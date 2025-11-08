@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_point.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:03:23 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/03 14:16:11 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/05 10:09:40 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/07 15:33:26 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char nb);
+#ifndef FT_POINT_H
+# define FT_POINT_H
 
-void	ft_print_alphabet(void)
-{
-	int	i;
+typedef struct set_point {
+	int	x;
+	int	y;
+}	t_point;
 
-	i = 97;
-	while (i <= 122)
-	{
-		ft_putchar(i);
-		i++;
-	}
-}
+#endif

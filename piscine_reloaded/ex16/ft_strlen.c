@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:03:23 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/03 14:16:11 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/04 10:12:24 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/04 10:39:52 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char nb);
-
-void	ft_print_alphabet(void)
+int	ft_strlen(char *str)
 {
 	int	i;
 
-	i = 97;
-	while (i <= 122)
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar(i);
 		i++;
 	}
+	return (i);
 }

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:03:23 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/03 14:16:11 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/03 14:17:18 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/03 14:20:42 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_putchar(char nb);
 
-void	ft_print_alphabet(void)
+void	ft_print_numbers(void)
 {
 	int	i;
 
-	i = 97;
-	while (i <= 122)
+	i = '0';
+	while (i <= '9')
 	{
 		ft_putchar(i);
 		i++;

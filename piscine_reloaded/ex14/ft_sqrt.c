@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 14:03:23 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/03 14:16:11 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/03 16:04:56 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/07 15:22:30 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char nb);
-
-void	ft_print_alphabet(void)
+int	ft_sqrt(int nb)
 {
-	int	i;
+	long	i;
 
-	i = 97;
-	while (i <= 122)
+	i = 0;
+	if (nb == 1)
+		return (1);
+	while ((nb / 2) > i)
 	{
-		ft_putchar(i);
+		if (i * i == nb)
+			return (i);
 		i++;
 	}
+	return (0);
 }

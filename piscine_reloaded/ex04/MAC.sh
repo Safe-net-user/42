@@ -1,1 +1,3 @@
-ifconfig | grep -oE "..:..:..:..:..:.."
+#! /bin/sh
+
+ifconfig | grep -oE '..:..:..:..:..:..'
