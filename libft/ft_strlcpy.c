@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 14:18:34 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/11 14:21:53 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/11 14:21:11 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/12 15:35:58 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
+size_t	ft_strlcpy(char * dst, const char * src, size_t s)
 {
-	size_t	i;
-	char	*p1;
-	char	*p2;
+	size_t i;
 
-	i = n - 1;
-	p1 = (char *) dest;
-	p2 = (char *) src;
-	while (i > 0)
+	i = 0;
+	if (s == 0)
+		return (0);
+	if (ft_strlen(src) >= s)
+		return (ft_strlen(src));
+	while (i < s && )
 	{
-		p1[i] = p2[i];
-		i--;
+		dst[i] = src[i];
+		i++;
 	}
-	p1[0] = p2[0];
-	return (p1);
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

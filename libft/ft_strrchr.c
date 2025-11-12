@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 14:18:34 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/11 14:21:53 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/12 15:50:18 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/12 15:53:48 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
+char *ft_strrchr(const char *s, int c)
 {
 	size_t	i;
-	char	*p1;
-	char	*p2;
+	int		occ;
 
-	i = n - 1;
-	p1 = (char *) dest;
-	p2 = (char *) src;
-	while (i > 0)
+	i = 0;
+	occ = 0;
+	while (s[i])
 	{
-		p1[i] = p2[i];
-		i--;
+		if (s[i] == c)
+			occ = i;
+		i++;
 	}
-	p1[0] = p2[0];
-	return (p1);
+	if (occ == 0)
+		return (s[i]);
+	return (s[occ]);
 }

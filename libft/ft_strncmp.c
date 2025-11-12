@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 14:18:34 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/11 14:21:53 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/11/12 15:54:09 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/12 16:05:41 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
-	char	*p1;
-	char	*p2;
 
-	i = n - 1;
-	p1 = (char *) dest;
-	p2 = (char *) src;
-	while (i > 0)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		p1[i] = p2[i];
-		i--;
+		if (s1[i] != s2[i] || i == n)
+			return (s1[i] - s2[i]);
+		i++;
 	}
-	p1[0] = p2[0];
-	return (p1);
+	return (0);
 }
