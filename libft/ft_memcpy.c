@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include "ft_head.h"
 
 void	*ft_memcpy(void * restrict dest, const void * restrict src, size_t n)
 {

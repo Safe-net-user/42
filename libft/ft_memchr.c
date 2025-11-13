@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_head.h"
+
 void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char *p1;
@@ -19,6 +21,9 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-
+		if (p1[i] == c)
+			return (&p1[i]);
+		i++;
 	}
+	return (&p1[i]);
 }

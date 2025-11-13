@@ -1,0 +1,21 @@
+#include "ft_head.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned char *p1;
+	unsigned char *p2;
+	size_t	i;
+
+	p1 = (char *) s1;
+	p2 = (char *) s2;
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (p1[i] || p2[i])
+	{
+		if (p1[i] != p2[i] || (i + 1) == n)
+			return (p1[i] - p2[i]);
+		i++;
+	}
+	return (0);
+}

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_head.h"
+
 char *ft_strrchr(const char *s, int c)
 {
 	size_t	i;
@@ -24,6 +26,6 @@ char *ft_strrchr(const char *s, int c)
 		i++;
 	}
 	if (occ == 0)
-		return (s[i]);
-	return (s[occ]);
+		return ((char *) &s[i]);
+	return ((char *) &s[occ]);
 }

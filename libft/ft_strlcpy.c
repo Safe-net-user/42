@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_head.h"
+
 size_t	ft_strlcpy(char * dst, const char * src, size_t s)
 {
 	size_t i;
@@ -17,13 +19,13 @@ size_t	ft_strlcpy(char * dst, const char * src, size_t s)
 	i = 0;
 	if (s == 0)
 		return (0);
-	if (ft_strlen(src) >= s)
-		return (ft_strlen(src));
-	while (i < s && )
+	if (ft_strlen((char *) src) >= s)
+		return (ft_strlen((char *) src));
+	while (i < s && dst[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (ft_strlen(src));
+	return (ft_strlen((char *) src));
 }
