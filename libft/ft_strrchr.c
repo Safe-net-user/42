@@ -15,17 +15,23 @@
 char *ft_strrchr(const char *s, int c)
 {
 	size_t	i;
-	int		occ;
+	size_t	occ;
 
 	i = 0;
-	occ = 0;
+	occ = -1;
+	if (c > 255)
+		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == c)
 			occ = i;
 		i++;
 	}
-	if (occ == 0)
+	if (s[i] == c)
+		return ((char *) &s[i]);
+	if (occ == -1)
+		return (NULL);
+	if (s[i] == c)
 		return ((char *) &s[i]);
 	return ((char *) &s[occ]);
 }

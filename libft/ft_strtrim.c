@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		is_to_removed(char const *set, char c)
 {
 	size_t	i;

@@ -12,22 +12,38 @@
 
 #include "libft.h"
 
+char *left_to_right(char *p1, char *p2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		p1[i] = p2[i];
+		i++;
+	}
+	return (p1);
+}
+
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 	char	*p1;
 	char	*p2;
 
-	i = n - 1;
 	p1 = (char *) dest;
 	p2 = (char *) src;
+	if (n == 0)
+		return (dest);
 	if (dest == NULL && src == NULL)
 		return (NULL);
-	while (i > 0)
+	if (dest > src)
 	{
-		p1[i] = p2[i];
-		i--;
+		i = n;
+		while (i-- > 0)
+			p1[i] = p2[i];
 	}
-	p1[0] = p2[0];
+	else
+		return (left_to_right(p1, p2, n));
 	return (p1);
 }

@@ -47,10 +47,14 @@ ft_strlen.c  \
 ft_toupper.c \
 ft_memchr.c  \
 ft_strchr.c  \
-ft_strncmp.c
+ft_strncmp.c \
+ft_strjoin.c \
+ft_substr.c  \
+ft_strtrim.c \
+
 
 OBJ			:= $(SRCS:.c=.o)
-INCLUDE		:= head.h
+INCLUDE		:= libft.h
 
 # rules
 all: $(NAME)
