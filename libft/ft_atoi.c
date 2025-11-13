@@ -1,4 +1,4 @@
-#include "ft_head.h"
+#include "libft.h"
 
 int	ft_atoi_step_2(const char * str, int * i, int sign)
 {

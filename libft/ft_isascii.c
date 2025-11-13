@@ -6,11 +6,11 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 14:45:26 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/09 21:10:58 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:50:42 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 int ft_isascii(int  c)
 {

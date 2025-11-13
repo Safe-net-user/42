@@ -6,11 +6,11 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:11:34 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/09 21:13:29 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:51:16 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 int ft_isprint(int  c)
 {

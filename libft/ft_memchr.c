@@ -6,11 +6,11 @@
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:06:02 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/12 16:34:11 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:51:28 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

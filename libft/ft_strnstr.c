@@ -1,5 +1,5 @@
 
-#include "ft_head.h"
+#include "libft.h"
 
 int		check(const char *big, const char *little, size_t i, size_t len)
 {

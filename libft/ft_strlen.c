@@ -6,11 +6,11 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:14:06 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/09 21:18:17 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:54:04 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 size_t ft_strlen(char *str)
 {

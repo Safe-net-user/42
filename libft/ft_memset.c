@@ -6,11 +6,11 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 21:20:27 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/09 21:20:30 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:52:44 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 void	*ft_memset(void *n, int value, size_t count)
 {

@@ -6,11 +6,11 @@
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 14:21:11 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/12 15:35:58 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:53:46 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 size_t	ft_strlcpy(char * dst, const char * src, size_t s)
 {

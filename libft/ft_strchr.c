@@ -6,11 +6,11 @@
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:43:46 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/12 15:50:03 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:53:01 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 char *ft_strchr(const char *s, int c)
 {

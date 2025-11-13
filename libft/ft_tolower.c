@@ -6,11 +6,11 @@
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 15:42:03 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/12 15:43:26 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/13 14:55:16 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_head.h"
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

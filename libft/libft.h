@@ -1,5 +1,5 @@
-#ifndef FT_HEAD_H
-# define FT_HEAD_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 #include <stddef.h>
 #include <unistd.h>
