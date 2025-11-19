@@ -13,81 +13,99 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
-int		occ_separator(char const *s, char c)
-{
-	unsigned int	i;
-	int				occ;
 
-	i = 0;
-	occ = 0;
+int	occ_separator(char const *s, char c)
+{
+	unsigned int i = 0;
+	int occ = 0;
+
+	while (s[i] == c)
+		i++;
 	while (s[i])
 	{
-		if (i == 0 && s[i] == c)
-		{
-			i++;
-			printf("i -> %d, c ->  %d, s de i -> %d, occ -> %d\n", i, c, s[i], occ);
-		}
-		while (s[i] == c)
-		{
-			i++;
-			printf("i -> %d, c ->  %d, s de i -> %d\n", i, c, s[i]);
-		}
+		if (s[i] == c && (i == 0 || s[i - 1] != c) && s[i + 1] != c)
+			occ++;
 		i++;
 	}
-	return (occ);
+	return occ;
 }
 
-char	*part(char const *s, size_t i, size_t *j)
+char	*part(char const *s, size_t i, size_t *j, char **arr)
 {
-	char	*p;
-	size_t	k;
+	char *p;
+	int l = 0;
+	size_t k = 0;
 
 	p = malloc(i - *j + 1);
 	if (p == NULL)
-		return (NULL);
-	k = 0;
+	{
+		while (arr[l])
+		{
+			free(arr[l]);
+			l++;
+		}
+		free(arr);
+		return NULL;
+	}
 	while (*j < i)
 	{
 		p[k] = s[*j];
 		k++;
-		*j++;
+		(*j)++;
 	}
-	*j++;
-	return (p);
+	p[k] = '\0';
+	return p;
+}
+
+char	**final_arr(char **p, char const *s, char c)
+{
+	size_t i = 0;
+	size_t j = 0;
+	size_t occ = 0;
+
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		j = i;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		if (i > j)
+		{
+			p[occ] = part(s, i, &j, p);
+			occ++;
+		}
+	}
+	p[occ] = NULL;
+	return p;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**p;
-	size_t	j;
-	size_t	i;
-	int		occ;
+	char **p;
 
-	i = 0;
-	j = 0;
-	occ = 0;
-	p = malloc(occ_separator(s, c) + 2);
-	while (s[i])
-	{
-		while (s[i] != c)
-			i++;
-		p[occ] = part(s, i, &j);
-		occ++;
-		while (s[i] == c)
-		{
-			i++;
-			j++;
-		}
-	}
-	p[occ + 1] = NULL;
-	return (p);
+	p = malloc(sizeof(char *) * (occ_separator(s, c) + 1));
+	if (p == NULL)
+		return NULL;
+    return final_arr(p, s, c);
 }
 
 int main()
 {
-	char s[] = ",,,,t,est,test,,,test";
-	char	**tab;
+    char s[] = " lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse";
+    char **tab;
+    size_t i = 0;
 
-	//tab = ft_split(s, 'c');
-	printf("%d", occ_separator(s, ','));
+    tab = ft_split(s, ',');
+
+    while (tab[i])
+    {
+        printf("%s\n", tab[i]);
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+
+    return 0;
 }
+

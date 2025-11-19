@@ -25,36 +25,40 @@ int	ft_atoi(const char * str)
 
 	i = 0;
 	sign = 0;
-	while ((str[i] < '0' || str[i] > '9' || str[i] == '\t' || str[i] == '\v' ||
-str[i] == '\f' || str[i] == '\r' || str[i] == '\n')
-&& sign == 0)
+	while (str[i])
 	{
-		if (str[i] == '-')
-			sign = -1;
+		if (str[i] == '\n' || str[i] == '\t' || str[i] == '\v' || str[i] == '\f' || str[i] == '\r' || str[i] == 32)
+			i++;
+		else if (str[i] >= '0' && str[i] <= '9')
+			return (ft_atoi_step_2(str, &i, sign));
+		else if (str[i] == '-')
+		{
+			sign -= 1;
+			i++;
+			return (ft_atoi_step_2(str, &i, sign));
+		}
 		else if (str[i] == '+')
-			sign = 1;
-		i++;
+		{
+			sign += 1;
+			i++;
+			return (ft_atoi_step_2(str, &i, sign));
+		}
+		else
+			return (0);
 	}
-	if (!(str[i] >= '0' && str[i] <= '9'))
-		return (0);
-	return (ft_atoi_step_2(str, &i, sign));
 }
 
 /*int main(void)
 {
-    printf("atoi(-) -> %d | ft_atoi(-) -> %d\n", atoi("-"), ft_atoi("-"));
-    printf("atoi(--1) -> %d | ft_atoi(--1) -> %d\n", atoi("--1"), ft_atoi("--1"));
-    printf("atoi(++1) -> %d | ft_atoi(++1) -> %d\n", atoi("++1"), ft_atoi("++1"));
-    printf("atoi(1--) -> %d | ft_atoi(1--) -> %d\n", atoi("1--"), ft_atoi("1--"));
-    printf("atoi(1++) -> %d | ft_atoi(1++) -> %d\n", atoi("1++"), ft_atoi("1++"));
-    printf("atoi(      +234) -> %d | ft_atoi(      +234) -> %d\n",
-           atoi("      +234"), ft_atoi("      +234"));
-    printf("atoi(   -   -234) -> %d | ft_atoi(   -   -234) -> %d\n",
-           atoi("   -   -234"), ft_atoi("   -   -234"));
-    printf("atoi(- + - 6) -> %d | ft_atoi(- + - 6) -> %d\n",
-           atoi("- + - 6"), ft_atoi("- + - 6"));
-    printf("atoi(      +    234) -> %d | ft_atoi(      +    234) -> %d\n",
-           atoi("      +    234"), ft_atoi("      +    234"));
+    printf("atoi(-) -> %d | ft_atoi(-) -> %d\n", atoi("-"), atoi("-"));
+    printf("atoi(--1) -> %d | ft_atoi(--1) -> %d\n", atoi("--1"), atoi("--1"));
+    printf("atoi(++1) -> %d | ft_atoi(++1) -> %d\n", atoi("++1"), atoi("++1"));
+    printf("atoi(1--) -> %d | ft_atoi(1--) -> %d\n", atoi("1--"), atoi("1--"));
+    printf("atoi(1++) -> %d | ft_atoi(1++) -> %d\n", atoi("1++"), atoi("1++"));
+    printf("atoi(      +234) -> %d | ft_atoi(      +234) -> %d\n", atoi("      +234"), atoi("      +234"));
+    printf("atoi(   -   -234) -> %d | ft_atoi(   -   -234) -> %d\n", atoi("   -   -234"), atoi("   -   -234"));
+    printf("atoi(r   7) -> %d | ft_atoi(r    7) -> %d\n", atoi("r    7"), atoi("r   7"));
+    printf("atoi( i     +    234) -> %d | ft_atoi(      +    234) -> %d\n", atoi("      +    234"), atoi("      +    234"));
 
     return 0;
 }*/

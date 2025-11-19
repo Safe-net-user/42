@@ -1,7 +1,7 @@
 
 #include "libft.h"
 
-int		check(const char *big, const char *little, size_t i, size_t len)
+int	check(const char *big, const char *little, size_t i, size_t len)
 {
 	size_t n;
 	size_t j;
@@ -10,7 +10,7 @@ int		check(const char *big, const char *little, size_t i, size_t len)
 	j = 0;
 	while (j < n)
 	{
-		if (big[j + i] != little[j] || i == len)
+		if (big[i] != little[j] || i == len)
 			return (0);
 		i++;
 		j++;

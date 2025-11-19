@@ -26,26 +26,65 @@ int		is_to_removed(char const *set, char c)
 	return (0);
 }
 
+int	index_suffixe(char const *str, char const *set)
+{
+	size_t	i;
+	size_t	j;
+
+	i = ft_strlen((char *)str) - 1;
+	while (is_to_removed(set, str[i]) == 1 && i > 0)
+		i--;
+return (i);
+}
+
+int	size_p(const char *str, char const *set)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (str[i] == '\0')
+		return (0);
+	while (is_to_removed(set, str[i]) == 1)
+		i++;
+	while (i <= index_suffixe(str, set))
+	{
+		j++;
+		i++;
+	}
+	return (j);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*p;
 	size_t	i;
 	size_t	j;
 
-	p = malloc(sizeof(char) * ft_strlen((char *)s1));
+	p = malloc(sizeof(char) * size_p(s1, set) + 1);
 	if (p == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
 	while (s1[i])
 	{
-		if (is_to_removed(set, s1[i]) == 0)
+		while (is_to_removed(set, s1[i]) == 1)
+			i++;
+		while (i <= index_suffixe(s1, set))
 		{
 			p[j] = s1[i];
-			i++;
 			j++;
+			i++;
 		}
-		i++;
 	}
+	p[j] = '\0';
 	return (p);
 }
+
+/*int main()
+{
+	char *s1 = "  \t \t \n   \n\n\n\t";
+	char *s2 = "";
+	printf("%s test -> ", ft_strtrim(s1, " \t\n"));
+}*/

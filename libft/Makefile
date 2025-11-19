@@ -51,25 +51,35 @@ ft_strncmp.c \
 ft_strjoin.c \
 ft_substr.c  \
 ft_strtrim.c \
+ft_strtrim.c \
+ft_split.c   \
+ft_itoa.c    \
+ft_strmapi.c \
+ft_striteri.c\
+ft_putchar_fd.c \
+ft_putstr_fd.c  \
+ft_putendl_fd.c \
+ft_putnbr_fd.c \
+
 
 
 OBJ			:= $(SRCS:.c=.o)
-INCLUDE		:= libft.h
+INCLUDE		:= ./include
 
 # rules
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
 %.o:%.c
-	$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@
+	@$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@
 
 clean:
-	$(RMF) $(OBJ)
+	@$(RMF) $(OBJ)
 
 fclean: clean
-	$(RMF) $(NAME)
+	@$(RMF) $(NAME)
 
 re: fclean $(NAME)
 
