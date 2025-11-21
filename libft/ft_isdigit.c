@@ -6,13 +6,13 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 14:38:20 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/13 14:51:03 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:10:46 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int  c)
+int	ft_isdigit(int c)
 {
-    return (c <= '9' && c >= '0');
+	return (c <= '9' && c >= '0');
 }

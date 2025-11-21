@@ -6,7 +6,7 @@
 #    By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/09 16:43:32 by gd-hallu          #+#    #+#              #
-#    Updated: 2025/11/09 19:14:58 by gd-hallu         ###   ########.fr        #
+#    Updated: 2025/11/20 23:50:31 by gd-hallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,17 @@ ft_putstr_fd.c  \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
 
-
+SRCS_BONUS := ft_lstnew.c \
+ft_lstadd_front.c \
+ft_lstsize.c \
+ft_lstclear.c \
+ft_lstadd_back.c \
+ft_lstdelone.c \
+ft_lstiter.c \
+ft_lstlast.c
 
 OBJ			:= $(SRCS:.c=.o)
+OBJ_BONUS	:= $(SRCS_BONUS:.c=.o)
 INCLUDE		:= ./include
 
 # rules
@@ -71,6 +79,12 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
+
+bonus: $(OBJ) $(OBJ_BONUS)
+	@$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
+
+%.o:%.c
+	@$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@
 
 %.o:%.c
 	@$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@

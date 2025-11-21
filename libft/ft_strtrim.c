@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:05:22 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/13 16:27:10 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:01:13 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		is_to_removed(char const *set, char c)
+int	is_to_removed(char const *set, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while(set[i])
+	while (set[i])
 	{
 		if (set[i] == c)
 			return (1);
@@ -31,10 +31,10 @@ int	index_suffixe(char const *str, char const *set)
 	size_t	i;
 	size_t	j;
 
-	i = ft_strlen((char *)str) - 1;
+	i = ft_strlen(str) - 1;
 	while (is_to_removed(set, str[i]) == 1 && i > 0)
 		i--;
-return (i);
+	return (i);
 }
 
 int	size_p(const char *str, char const *set)

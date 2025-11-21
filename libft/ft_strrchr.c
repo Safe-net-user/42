@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	size_t	i;
 	size_t	occ;
@@ -20,7 +20,7 @@ char *ft_strrchr(const char *s, int c)
 	i = 0;
 	occ = -1;
 	if (c > 255)
-		return (NULL);
+		c = c % 256;
 	while (s[i])
 	{
 		if (s[i] == c)

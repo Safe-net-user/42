@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/20 15:06:59 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/11/20 15:09:57 by gd-hallu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdio.h>
 
-int	size(int c)
+int	size(long c)
 {
 	if (c < 10)
 		return (1);
@@ -24,7 +36,7 @@ int	size(int c)
 	return (10);
 }
 
-char *int_to_ascii(char *src, int n, int i)
+char	*int_to_ascii(char *src, long n, int i)
 {
 	if (n >= 10)
 		int_to_ascii(src, n / 10, i - 1);
@@ -32,7 +44,7 @@ char *int_to_ascii(char *src, int n, int i)
 	return (src);
 }
 
-char *ft_itoa(int nb)
+char	*ft_itoa(int nb)
 {
 	short	sign;
 	char	*p;
@@ -53,12 +65,4 @@ char *ft_itoa(int nb)
 	int_to_ascii(p + sign, n, size(n) - 1);
 	p[size(n) + sign] = '\0';
 	return (p);
-}
-
-int main()
-{
-	printf("%s\n", ft_itoa(1234));
-	printf("%s\n", ft_itoa(-12345));
-	printf("%s\n", ft_itoa(-2147483648));
-	printf("%s", ft_itoa(2147483647));
 }

@@ -16,27 +16,32 @@
 
 int	occ_separator(char const *s, char c)
 {
-	unsigned int i = 0;
-	int occ = 0;
+	unsigned int	i;
+	int				occ;
 
-	while (s[i] == c)
-		i++;
+	i = 0;
+	occ = 0;
 	while (s[i])
 	{
-		if (s[i] == c && (i == 0 || s[i - 1] != c) && s[i + 1] != c)
-			occ++;
-		i++;
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i])
+			occ ++;
+		while (s[i] != c && s[i])
+			i++;
 	}
-	return occ;
+	return (occ);
 }
 
 char	*part(char const *s, size_t i, size_t *j, char **arr)
 {
-	char *p;
-	int l = 0;
-	size_t k = 0;
+	char	*p;
+	int		l;
+	size_t	k;
 
 	p = malloc(i - *j + 1);
+	l = 0;
+	k = 0;
 	if (p == NULL)
 	{
 		while (arr[l])
@@ -45,7 +50,7 @@ char	*part(char const *s, size_t i, size_t *j, char **arr)
 			l++;
 		}
 		free(arr);
-		return NULL;
+		return (NULL);
 	}
 	while (*j < i)
 	{
@@ -54,15 +59,18 @@ char	*part(char const *s, size_t i, size_t *j, char **arr)
 		(*j)++;
 	}
 	p[k] = '\0';
-	return p;
+	return (p);
 }
 
 char	**final_arr(char **p, char const *s, char c)
 {
-	size_t i = 0;
-	size_t j = 0;
-	size_t occ = 0;
+	size_t	i;
+	size_t	j;
+	size_t	occ;
 
+	i = 0;
+	j = 0;
+	occ = 0;
 	while (s[i])
 	{
 		while (s[i] == c)
@@ -77,35 +85,15 @@ char	**final_arr(char **p, char const *s, char c)
 		}
 	}
 	p[occ] = NULL;
-	return p;
+	return (p);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char **p;
+	char	**p;
 
 	p = malloc(sizeof(char *) * (occ_separator(s, c) + 1));
 	if (p == NULL)
-		return NULL;
-    return final_arr(p, s, c);
+		return (NULL);
+	return (final_arr(p, s, c));
 }
-
-int main()
-{
-    char s[] = " lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse";
-    char **tab;
-    size_t i = 0;
-
-    tab = ft_split(s, ',');
-
-    while (tab[i])
-    {
-        printf("%s\n", tab[i]);
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
-
-    return 0;
-}
-
