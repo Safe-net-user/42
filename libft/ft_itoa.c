@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	size(long c)
+static int	size(long c)
 {
 	if (c < 10)
 		return (1);
@@ -36,7 +36,7 @@ int	size(long c)
 	return (10);
 }
 
-char	*int_to_ascii(char *src, long n, int i)
+static char	*int_to_ascii(char *src, long n, int i)
 {
 	if (n >= 10)
 		int_to_ascii(src, n / 10, i - 1);

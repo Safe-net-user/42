@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	is_to_removed(char const *set, char c)
+static int	is_to_removed(char const *set, char c)
 {
 	size_t	i;
 
@@ -26,10 +26,9 @@ int	is_to_removed(char const *set, char c)
 	return (0);
 }
 
-int	index_suffixe(char const *str, char const *set)
+static size_t	index_suffixe(char const *str, char const *set)
 {
 	size_t	i;
-	size_t	j;
 
 	i = ft_strlen(str) - 1;
 	while (is_to_removed(set, str[i]) == 1 && i > 0)
@@ -37,7 +36,7 @@ int	index_suffixe(char const *str, char const *set)
 	return (i);
 }
 
-int	size_p(const char *str, char const *set)
+static int	size_p(const char *str, char const *set)
 {
 	size_t	i;
 	size_t	j;

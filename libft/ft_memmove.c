@@ -12,7 +12,12 @@
 
 #include "libft.h"
 
-char	*left_to_right(unsigned char *p1, unsigned char *p2, size_t n)
+/*
+*	name:		l_t_r;
+*	objective:	Write in the memory left to right
+*/
+
+static unsigned char	*l_t_r(unsigned char *p1, unsigned char *p2, size_t n)
 {
 	size_t	i;
 
@@ -44,6 +49,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			p1[i] = p2[i];
 	}
 	else
-		return (left_to_right(p1, p2, n));
+		return (l_t_r(p1, p2, n));
 	return (p1);
 }

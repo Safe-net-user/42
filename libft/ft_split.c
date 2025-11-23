@@ -10,11 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int	occ_separator(char const *s, char c)
+static int	occ_separator(char const *s, char c)
 {
 	unsigned int	i;
 	int				occ;
@@ -33,25 +31,15 @@ int	occ_separator(char const *s, char c)
 	return (occ);
 }
 
-char	*part(char const *s, size_t i, size_t *j, char **arr)
+static char	*part(char const *s, size_t i, size_t *j)
 {
 	char	*p;
-	int		l;
 	size_t	k;
 
 	p = malloc(i - *j + 1);
-	l = 0;
 	k = 0;
 	if (p == NULL)
-	{
-		while (arr[l])
-		{
-			free(arr[l]);
-			l++;
-		}
-		free(arr);
 		return (NULL);
-	}
 	while (*j < i)
 	{
 		p[k] = s[*j];
@@ -62,7 +50,23 @@ char	*part(char const *s, size_t i, size_t *j, char **arr)
 	return (p);
 }
 
-char	**final_arr(char **p, char const *s, char c)
+static void	*free_arr(char **p, int size, int occ)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = size;
+	while (i < j && i <= occ)
+	{
+		free(p[i]);
+		i++;
+	}
+	free(p);
+	return (NULL);
+}
+
+static char	**final_arr(char **p, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -73,14 +77,16 @@ char	**final_arr(char **p, char const *s, char c)
 	occ = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
 		j = i;
 		while (s[i] != c && s[i] != '\0')
 			i++;
 		if (i > j)
 		{
-			p[occ] = part(s, i, &j, p);
+			p[occ] = part(s, i, &j);
+			if (p[occ] == NULL)
+				return (free_arr(p, occ_separator(s, c) + 1, occ));
 			occ++;
 		}
 	}
@@ -92,6 +98,8 @@ char	**ft_split(char const *s, char c)
 {
 	char	**p;
 
+	if (!s)
+		return (NULL);
 	p = malloc(sizeof(char *) * (occ_separator(s, c) + 1));
 	if (p == NULL)
 		return (NULL);

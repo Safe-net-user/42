@@ -23,9 +23,7 @@ NAME		:= libft.a
 WFLAG		:= -Wall -Wextra -Werror -Wvla
 
 # files
-SRCS		:= ft_isdigit.c \
-ft_isalpha.c \
-ft_isalnum.c \
+SRCS		:= ft_isalnum.c \
 ft_atoi.c    \
 ft_isalpha.c \
 ft_memcmp.c  \
@@ -51,7 +49,6 @@ ft_strncmp.c \
 ft_strjoin.c \
 ft_substr.c  \
 ft_strtrim.c \
-ft_strtrim.c \
 ft_split.c   \
 ft_itoa.c    \
 ft_strmapi.c \
@@ -68,7 +65,8 @@ ft_lstclear.c \
 ft_lstadd_back.c \
 ft_lstdelone.c \
 ft_lstiter.c \
-ft_lstlast.c
+ft_lstlast.c \
+ft_lstmap.c \
 
 OBJ			:= $(SRCS:.c=.o)
 OBJ_BONUS	:= $(SRCS_BONUS:.c=.o)
@@ -84,10 +82,7 @@ bonus: $(OBJ) $(OBJ_BONUS)
 	@$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
 
 %.o:%.c
-	@$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@
-
-%.o:%.c
-	@$(CC) $(WFLAGS) -I$(INCLUDE) -c $< -o $@
+	@$(CC) $(WFLAG) -I$(INCLUDE) -c $< -o $@
 
 clean:
 	@$(RMF) $(OBJ)

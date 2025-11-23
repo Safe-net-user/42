@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_atoi_step_2(const char *str, int *i, int sign)
+static int	ft_atoi_step_2(const char *str, int *i, int sign)
 {
 	int	count;
 	int	j;
@@ -53,4 +53,5 @@ int	ft_atoi(const char *str)
 		else
 			return (0);
 	}
+	return (0);
 }

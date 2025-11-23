@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	check_bl(const char *big, const char *little, size_t i, size_t len)
+static int	check_bl(const char *big, const char *little, size_t i, size_t len)
 {
 	size_t	n;
 	size_t	j;
