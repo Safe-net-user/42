@@ -1,55 +1,72 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/11/28 07:37:23 by gd-hallu          #+#    #+#              #
+#     Updated: 2025/11/28 07:37:23 by gd-hallu         ###   ########.fr       #
+#                                                                              #
+# **************************************************************************** #
+
+# Projects
+
+NAME				:= libftprintf.a
+
 # constants
 
-CC			:= gcc
-RMF			:= rm -f
-RMRF		:= rm -rf
-MKDIR		:= mkdir -p
-NORM		:= norminette
-AR			:= ar rcs
-MODE		:= debug
-NAME		:= libftprintf.a
-LIBFT		:= ./libft/libft.a
+CC					:= cc
+AR					:= ar rcs
+RMF					:= rm -f
+RMRF				:= rm -rf
+MKDIR				:= mkdir -p
+NORM				:= norminette
+LIBFT				:= ./libft/libft.a
 
 # directories
 
-OBJ = ./obj
-HDR = ./includes
-SRCS = ./srcs
+OBJ					:= ./obj
+HDR					:= ./includes
+SRCS				:= ./srcs
 
 # paths
 
-LIBFT_PATH	:= ./libft
+LIBFT_PATH			:= ./libft
 
 # flags
 
-WFLAGS		:= -Wall -Werror -Wextra -Wvla
+W_FLAGS				:= -Wall -Werror -Wextra -Wvla
+C_FLAGS				:= $(W_FLAGS) -I$(HDR) -std=c99
 
 # files
 
-SOURCES		:=
+SOURCES				:= ./$(SRCS)/ft_printf.c \
+./$(SRCS)/ft_printf_utils.c \
 
-# place .o of .c files into a directory called obj
+#OBJECTS2 = $(SOURCES:.c=.o)
+#OBJECTS1 = $(notdir $OBJECTS2)
+#OBJECTS = $(addprefix $(OBJ)/, $(OBJECTS1))
 
-OBJECTS2 = $(SOURCES:.c=.o)
-OBJECTS1 = $(notdir $OBJECTS2)
-OBJECTS = $(addprefix $(OBJ)/, $(OBJECTS1))
+OBJECTS				:=$(patsubst $(SRCS)/%.c, $(OBJ)/%.o, $(SOURCES))
+
+# Build mode
+
+MODE	:= release
+ifeq ($(MODE), debug)
+	W_FLAGS := $(W_FLAGS) # autres flags
+endif
 
 # rules
 
 all: $(NAME) $(LIBFT)
 
-$(NAME): $(OBJ) $(OBJECTS)
+$(NAME):  $(OBJECTS)
 	@$(AR) $(NAME) $(OBJECTS)
 
 $(OBJ)/%.o: $(SRCS)/%.c
+	$(MKDIR) $(OBJ)
 	@$(CC) $(WFLAGS) -I$(HDR) -L$(LIBFT_PATH) -lft -c $< -o $@
-
-$(OBJ):
-	@$(MKDIR) $(OBJ)
-
-ifeq ($(MODE), debug)
-	$(NORM)
-endif
 
 clean:
 	@$(RMRF) $(OBJ)
@@ -59,4 +76,7 @@ fclean: clean
 
 re: fclean $(NAME)
 
-.PHONY: all obj norminette clean fclean re
+norminette:
+	@$(NORM)
+
+.PHONY: all clean fclean re norminette

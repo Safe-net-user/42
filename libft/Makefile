@@ -19,7 +19,7 @@ RMRF			:= rm -rf
 RMF				:= rm -f
 MKDIR			:= mkdir -p
 NAME			:= libft.a
-MODE			:= prod
+MODE			:= debug
 
 # directories
 
@@ -85,7 +85,7 @@ OBJECTS = $(addprefix obj/, $(OBJETS1))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(NORM) $(OBJECTS)
+$(NAME): $(OBJ)  $(OBJECTS)
 	@$(AR) $(NAME) $(OBJETS)
 
 $(OBJ)/%.o: $(SRCS)/%.c
