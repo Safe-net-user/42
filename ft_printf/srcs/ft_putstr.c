@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/28 12:34:05 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/12/01 14:30:48 by gd-hallu         ###   ########.fr       */
+/*   Created: 2025/12/01 14:21:14 by gd-hallu          #+#    #+#             */
+/*   Updated: 2025/12/01 14:25:00 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-size_t	ft_putchar(char c)
+size_t	ft_putstr(char *src)
 {
-	write(STDOUT, &c, 1);
-	return (1);
+	write(STDOUT, &(src), ft_strlen(src));
+	return (ft_strlen(src));
 }

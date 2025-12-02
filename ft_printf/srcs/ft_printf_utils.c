@@ -6,14 +6,26 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 13:50:15 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/28 12:32:19 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:17:38 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-void	conversion(char c, va_list *arg)
+
+size_t	call_functions(char c, va_list arg, size_t chars_written)
 {
-	return;
+	if (c == 'c' || c == '%')
+		return ft_putchar(va_arg(arg, int));
+	else if (c == 'd' || 'i')
+		return ft_putnbr_base(va_arg(arg, int), "0123456789");
+	else if (c == 's')
+		return ft_putstr(va_arg(arg, *char));
+	else if (c == 'x')
+		return ft_putnbr_base(va_arg(arg, unsigned int), "0123456789abcdef");
+	else if (c == 'X')
+		return ft_putnbr_base(va_arg(arg, unsigned int), "0123456789ABCDEF");
+	else
+		return ft_putnbr_pointer(va_arg(arg, long unsigned int));
 }
 
 short	valid_conversion_type(char c)

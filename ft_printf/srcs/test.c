@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 12:45:34 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/28 13:15:49 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:57:32 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,10 @@ int test(int n, ...)
 
 int main()
 {
-	test(4, 2, 3, 2, 1);
+	//test(4, 2, 3, 2, 1);
+	int	*p;
+
+	//printf("%u\n", (unsigned int)p);
+	printf("%i\n", -2147483648);
+	printf(sizeof(p));
 }

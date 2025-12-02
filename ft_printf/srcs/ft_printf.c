@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 13:22:09 by gd-hallu          #+#    #+#             */
-/*   Updated: 2025/11/28 12:32:25 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2025/12/01 14:15:01 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int	ft_printf(char *format, ...)
 {
 	va_list	argptr;
 	size_t	i;
+	size_t	chars_written;
 
+	i = 0;
+	chars_written = 0;
 	if (!format || check_format(format) == -1)
 		return (-1);
 	va_start(argptr, check_format(format));
@@ -24,13 +27,13 @@ int	ft_printf(char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			conversion(format[i + 1], argptr);
+			conversion(format[i + 1], argptr, &chars_written);
 			i += 2;
-		}
-		ft_putchar(format[i]);
+		else
+			ft_putchar(format[i]);
 		i++;
 	}
-	return (i);
+	return (chars_written);
 }
 
 int main()
