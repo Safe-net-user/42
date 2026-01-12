@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 14:59:32 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 19:06:16 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/12 20:33:45 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	handle_unsigned_int(va_list argptr, t_format *f)
 	int				i;
 
 	arg = va_arg(argptr, unsigned int);
-	str = malloc(len_str_u(arg, f));
+	str = malloc(len_str_u(arg, f) + 1);
 	i = 0;
 	if (!str)
 		return (0);
