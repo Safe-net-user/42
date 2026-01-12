@@ -12,7 +12,7 @@
 
 # constants
 
-CC				:= gcc
+CC				:= cc
 AR				:= ar rcs
 NORM			:= norminette
 RMRF			:= rm -rf
@@ -20,11 +20,18 @@ RMF				:= rm -f
 MKDIR			:= mkdir -p
 NAME			:= libft.a
 
+# colors
+
+RESET			:= \033[0m
+GREEN			:= \033[0;32m
+RED				:= \033[0;31m
+BLUE			:= \033[0;34m
+
 # directories
 
 OBJ				:= ./obj
-HDR				:= ./includes
-SRCS			:= ./srcs
+HDR				:= ./include
+SRC				:= ./src
 
 # flags
 
@@ -32,69 +39,71 @@ WFLAG		:= -Wall -Wextra -Werror -Wvla
 
 # files
 
-SOURCES		:= ./$(SRCS)/ft_isalnum.c \
-./$(SRCS)/ft_atoi.c    \
-./$(SRCS)/ft_isalpha.c \
-./$(SRCS)/ft_memcmp.c  \
-./$(SRCS)/ft_strdup.c  \
-./$(SRCS)/ft_strnstr.c \
-./$(SRCS)/ft_bzero.c   \
-./$(SRCS)/ft_isascii.c \
-./$(SRCS)/ft_memcpy.c  \
-./$(SRCS)/ft_strlcat.c \
-./$(SRCS)/ft_strrchr.c \
-./$(SRCS)/ft_calloc.c  \
-./$(SRCS)/ft_isdigit.c \
-./$(SRCS)/ft_memmove.c \
-./$(SRCS)/ft_strlcpy.c \
-./$(SRCS)/ft_tolower.c \
-./$(SRCS)/ft_isprint.c \
-./$(SRCS)/ft_memset.c  \
-./$(SRCS)/ft_strlen.c  \
-./$(SRCS)/ft_toupper.c \
-./$(SRCS)/ft_memchr.c  \
-./$(SRCS)/ft_strchr.c  \
-./$(SRCS)/ft_strncmp.c \
-./$(SRCS)/ft_strjoin.c \
-./$(SRCS)/ft_substr.c  \
-./$(SRCS)/ft_strtrim.c \
-./$(SRCS)/ft_split.c   \
-./$(SRCS)/ft_itoa.c    \
-./$(SRCS)/ft_strmapi.c \
-./$(SRCS)/ft_striteri.c\
-./$(SRCS)/ft_putchar_fd.c \
-./$(SRCS)/ft_putstr_fd.c  \
-./$(SRCS)/ft_putendl_fd.c \
-./$(SRCS)/ft_putnbr_fd.c \
-./$(SRCS)/ft_lstnew.c \
-./$(SRCS)/ft_lstadd_front.c \
-./$(SRCS)/ft_lstsize.c \
-./$(SRCS)/ft_lstclear.c \
-./$(SRCS)/ft_lstadd_back.c \
-./$(SRCS)/ft_lstdelone.c \
-./$(SRCS)/ft_lstiter.c \
-./$(SRCS)/ft_lstlast.c \
-./$(SRCS)/ft_lstmap.c
+SOURCES		:= $(SRC)/ft_isalnum.c \
+$(SRC)/ft_atoi.c    \
+$(SRC)/ft_isalpha.c \
+$(SRC)/ft_memcmp.c  \
+$(SRC)/ft_strdup.c  \
+$(SRC)/ft_strnstr.c \
+$(SRC)/ft_bzero.c   \
+$(SRC)/ft_isascii.c \
+$(SRC)/ft_memcpy.c  \
+$(SRC)/ft_strlcat.c \
+$(SRC)/ft_strrchr.c \
+$(SRC)/ft_calloc.c  \
+$(SRC)/ft_isdigit.c \
+$(SRC)/ft_memmove.c \
+$(SRC)/ft_strlcpy.c \
+$(SRC)/ft_tolower.c \
+$(SRC)/ft_isprint.c \
+$(SRC)/ft_memset.c  \
+$(SRC)/ft_strlen.c  \
+$(SRC)/ft_toupper.c \
+$(SRC)/ft_memchr.c  \
+$(SRC)/ft_strchr.c  \
+$(SRC)/ft_strncmp.c \
+$(SRC)/ft_strjoin.c \
+$(SRC)/ft_substr.c  \
+$(SRC)/ft_strtrim.c \
+$(SRC)/ft_split.c   \
+$(SRC)/ft_itoa.c    \
+$(SRC)/ft_strmapi.c \
+$(SRC)/ft_striteri.c\
+$(SRC)/ft_putchar_fd.c \
+$(SRC)/ft_putstr_fd.c  \
+$(SRC)/ft_putendl_fd.c \
+$(SRC)/ft_putnbr_fd.c \
+$(SRC)/ft_lstnew.c \
+$(SRC)/ft_lstadd_front.c \
+$(SRC)/ft_lstsize.c \
+$(SRC)/ft_lstclear.c \
+$(SRC)/ft_lstadd_back.c \
+$(SRC)/ft_lstdelone.c \
+$(SRC)/ft_lstiter.c \
+$(SRC)/ft_lstlast.c \
+$(SRC)/ft_lstmap.c
 
 OBJECTS2 = $(SOURCES:.c=.o)
-OBJECTS1 = $(notdir $(OBJETS2))
-OBJECTS = $(addprefix obj/, $(OBJETS1))
+OBJECTS1 = $(notdir $(OBJECTS2))
+OBJECTS = $(addprefix obj/, $(OBJECTS1))
 
 # rules
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(NORM) $(OBJECTS)
-	$(AR) $(NAME) $(OBJETS)
+	@$(AR) $(NAME) $(OBJECTS)
+	@echo "$(GREEN)$(NAME) succesfully created$(RESET)"
 
-$(OBJ)/%.o: $(SRCS)/%.c
-	$(CC) $(WFLAG) -I$(HDR) -c $< -o $@
+$(OBJ)/%.o: $(SRC)/%.c
+	@$(CC) $(WFLAG) -I$(HDR) -c $< -o $@
+	@echo "$(GREEN)[ ✔ ] Successfully processed $< into .o!$(RESET)"
 
 $(OBJ):
-	$(MKDIR) $(OBJ)
+	@$(MKDIR) $(OBJ)
 
-$(NORM):
-	$(NORM)
+norminette:
+	@$(NORM)
 
 clean:
 	@$(RMRF) $(OBJ)

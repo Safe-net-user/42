@@ -1,82 +1,121 @@
-# **************************************************************************** #
+# ############################################################################ #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/28 07:37:23 by gd-hallu          #+#    #+#              #
-#     Updated: 2025/11/28 07:37:23 by gd-hallu         ###   ########.fr       #
+#    Created: 2025/12/14 18:07:42 by gd-hallu          #+#    #+#              #
+#    Updated: 2026/01/08 17:35:12 by gd-hallu         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+# ############################################################################ #
 
-# Projects
+MAKEFLAGS += --no-print-directory
 
-NAME				:= libftprintf.a
+# PROJECT NAME
 
-# constants
+NAME		:= libftprintf.a
 
-CC					:= cc
-AR					:= ar rcs
-RMF					:= rm -f
-RMRF				:= rm -rf
-MKDIR				:= mkdir -p
-NORM				:= norminette
-LIBFT				:= ./libft/libft.a
+# CONSTANTS
 
-# directories
+CC			:= cc
+RM			:= rm
+RMF			:= rm -rf
+AR			:= ar rcs
+MKDIR		:= mkdir -p
+NORM		:= norminette
 
-OBJ					:= ./obj
-HDR					:= ./includes
-SRCS				:= ./srcs
+# BUILD (debug, release)
 
-# paths
+MODE		:= debug
 
-LIBFT_PATH			:= ./libft
+# DIRECTORIES
 
-# flags
+OBJ			:= ./obj
+SRC			:= ./src
+HDR			:= ./include
 
-W_FLAGS				:= -Wall -Werror -Wextra -Wvla
-C_FLAGS				:= $(W_FLAGS) -I$(HDR) -std=c99
+# LIBRARIES
 
-# files
+LIBFT_PATH	:= ./libft
+LIBFT		:= $(LIBFT_PATH)/libft.a
 
-SOURCES				:= ./$(SRCS)/ft_printf.c \
-./$(SRCS)/ft_printf_utils.c \
+# FLAGS
 
-#OBJECTS2 = $(SOURCES:.c=.o)
-#OBJECTS1 = $(notdir $OBJECTS2)
-#OBJECTS = $(addprefix $(OBJ)/, $(OBJECTS1))
+W_FLAGS		:= -Wall
+C_FLAGS		:= $(W_FLAGS) -I$(HDR) -I$(LIBFT_PATH)/include -std=c99
 
-OBJECTS				:=$(patsubst $(SRCS)/%.c, $(OBJ)/%.o, $(SOURCES))
+# COLORS
 
-# Build mode
+RESET>-->--->--->---:= \033[0m
+GREEN>-->--->--->---:= \033[0;32m
+RED					:= \033[0;31m
+BLUE				:= \033[0;34m
 
-MODE	:= release
-ifeq ($(MODE), debug)
-	W_FLAGS := $(W_FLAGS) # autres flags
-endif
+# BANNER
 
-# rules
+define BANNER
+$(GREEN)
+███████╗████████╗     ██████╗ ██████╗ ██╗███╗   ██╗████████╗███████╗
+██╔════╝╚══██╔══╝     ██╔══██╗██╔══██╗██║████╗  ██║╚══██╔══╝██╔════╝
+█████╗     ██║        ██████╔╝██████╔╝██║██╔██╗ ██║   ██║   █████╗
+██╔══╝     ██║        ██╔═══╝ ██╔══██╗██║██║╚██╗██║   ██║   ██╔══╝
+██║        ██║███████╗██║     ██║  ██║██║██║ ╚████║   ██║   ██║
+╚═╝        ╚═╝╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝
+$(RESET)
+endef
+export BANNER
 
-all: $(NAME) $(LIBFT)
+# FILES
 
-$(NAME):  $(OBJECTS)
+SOURCES		:= $(SRC)/ft_printf.c \
+$(SRC)/ft_parsing_format.c \
+$(SRC)/handle_int.c \
+$(SRC)/handle_string.c \
+$(SRC)/putchar_fd.c \
+$(SRC)/ft_printf_utils.c \
+$(SRC)/putstr_fd.c \
+$(SRC)/handle_lower_hexas.c \
+$(SRC)/handle_upper_hexas.c \
+$(SRC)/handle_hexas_utils.c \
+$(SRC)/handle_unsigned_int.c \
+$(SRC)/handle_char.c \
+$(SRC)/handle_pointer.c \
+$(SRC)/handle_pointer_utils.c \
+$(SRC)/handle_percent.c
+
+OBJECTS		:= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
+
+# RULES
+
+all: $(NAME)
+
+$(LIBFT):
+	@echo "$(BLUE)libft compiling ➜$(RESET)"
+	@make -C $(LIBFT_PATH)
+	@echo "$(GREEN)libft succesfuly compiled ✔$(RESET)"
+
+$(NAME): $(LIBFT) $(OBJECTS)
+	@cp $(LIBFT) $(NAME)
 	@$(AR) $(NAME) $(OBJECTS)
+	@echo "$$BANNER"
 
-$(OBJ)/%.o: $(SRCS)/%.c
-	$(MKDIR) $(OBJ)
-	@$(CC) $(WFLAGS) -I$(HDR) -L$(LIBFT_PATH) -lft -c $< -o $@
+$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+	$(CC) $(C_FLAGS) -c $< -o $@
+
+$(OBJ):
+	@$(MKDIR) $(OBJ)
+
+bonus: all
 
 clean:
-	@$(RMRF) $(OBJ)
+	@$(RMF) $(OBJ)
+	@make -C $(LIBFT_PATH) clean
 
 fclean: clean
-	@$(RMF) $(NAME)
+	@$(RM) $(NAME)
+	@make -C $(LIBFT_PATH) fclean
 
-re: fclean $(NAME)
+re: fclean all
 
-norminette:
-	@$(NORM)
-
-.PHONY: all clean fclean re norminette
+.PHONY: all clean fclean re
