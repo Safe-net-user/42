@@ -43,7 +43,7 @@ C_FLAGS		:= $(W_FLAGS) -I$(HDR) -I$(LIBFT_PATH)/include -std=c99
 
 # COLORS
 
-RESET>-->--->--->---:= \033[0m
+RESET				:= \033[0m
 GREEN				:= \033[0;32m
 
 # BANNER
