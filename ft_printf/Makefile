@@ -42,15 +42,13 @@ LIBFT		:= $(LIBFT_PATH)/libft.a
 
 # FLAGS
 
-W_FLAGS		:= -Wall
+W_FLAGS		:= -Wall -Wextra -Werror
 C_FLAGS		:= $(W_FLAGS) -I$(HDR) -I$(LIBFT_PATH)/include -std=c99
 
 # COLORS
 
 RESET>-->--->--->---:= \033[0m
-GREEN>-->--->--->---:= \033[0;32m
-RED					:= \033[0;31m
-BLUE				:= \033[0;34m
+GREEN				:= \033[0;32m
 
 # BANNER
 
@@ -73,6 +71,7 @@ $(SRC)/ft_parsing_format.c \
 $(SRC)/handle_int.c \
 $(SRC)/handle_string.c \
 $(SRC)/putchar_fd.c \
+$(SRC)/str_len.c \
 $(SRC)/ft_printf_utils.c \
 $(SRC)/putstr_fd.c \
 $(SRC)/handle_lower_hexas.c \
@@ -91,7 +90,6 @@ OBJECTS		:= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 all: $(NAME)
 
 $(LIBFT):
-	@echo "$(BLUE)libft compiling ➜$(RESET)"
 	@make -C $(LIBFT_PATH)
 	@echo "$(GREEN)libft succesfuly compiled ✔$(RESET)"
 
@@ -101,7 +99,8 @@ $(NAME): $(LIBFT) $(OBJECTS)
 	@echo "$$BANNER"
 
 $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
-	$(CC) $(C_FLAGS) -c $< -o $@
+	@$(CC) $(C_FLAGS) -c $< -o $@
+	@echo "$(GREEN)[ ✔ ] Successfully processed $< into .o!$(RESET)"
 
 $(OBJ):
 	@$(MKDIR) $(OBJ)

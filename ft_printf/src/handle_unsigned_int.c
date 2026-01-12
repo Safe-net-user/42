@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 14:59:32 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/08 18:06:46 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/12 19:06:16 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	write_flags(t_format *f, unsigned int nb, char *src, int *i)
 
 static void	write_param(t_format *f, unsigned int nb, char *src, int *i)
 {
-	unsigned int	j;
+	int	j;
 
 	j = 0;
 	if (size_u(nb) < f->precision)

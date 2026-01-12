@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 23:28:09 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 11:05:18 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/12 19:03:42 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,6 @@ int			len_string(int nb, t_format *f);
 int			putchar_fd(char c, int fd);
 int			putstr_fd(char *src, int fd);
 
+/* str_len functions for an integer returnment */
+int			str_len(char *src);
 #endif

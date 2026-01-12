@@ -10,7 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-# constants
+# PROJECT NAME
+
+NAME			:= libft.a
+
+# CONSTANTS
 
 CC				:= cc
 AR				:= ar rcs
@@ -20,24 +24,25 @@ RMF				:= rm -f
 MKDIR			:= mkdir -p
 NAME			:= libft.a
 
-# colors
+# COLORS
 
 RESET			:= \033[0m
 GREEN			:= \033[0;32m
 RED				:= \033[0;31m
 BLUE			:= \033[0;34m
 
-# directories
+
+# DIRECTORIES
 
 OBJ				:= ./obj
 HDR				:= ./include
 SRC				:= ./src
 
-# flags
+# FLAGS
 
 WFLAG		:= -Wall -Wextra -Werror -Wvla
 
-# files
+# FILES
 
 SOURCES		:= $(SRC)/ft_isalnum.c \
 $(SRC)/ft_atoi.c    \
@@ -83,15 +88,13 @@ $(SRC)/ft_lstiter.c \
 $(SRC)/ft_lstlast.c \
 $(SRC)/ft_lstmap.c
 
-OBJECTS2 = $(SOURCES:.c=.o)
-OBJECTS1 = $(notdir $(OBJECTS2))
-OBJECTS = $(addprefix obj/, $(OBJECTS1))
+OBJECTS			:= $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
-# rules
+# RULES
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(NORM) $(OBJECTS)
+$(NAME): $(OBJ) $(OBJECTS)
 	@$(AR) $(NAME) $(OBJECTS)
 	@echo "$(GREEN)$(NAME) succesfully created$(RESET)"
 
