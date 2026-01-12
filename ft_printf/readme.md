@@ -24,7 +24,7 @@ Compile the library using the following commands:
 ```bash
 gcc -Wall -Wextra -Werror -c *.c
 ar rcs libftprintf.a *.o
-
+```
 Usage
 
 Include the header and link the library in your project:
