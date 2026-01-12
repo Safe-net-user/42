@@ -25,10 +25,6 @@ AR			:= ar rcs
 MKDIR		:= mkdir -p
 NORM		:= norminette
 
-# BUILD (debug, release)
-
-MODE		:= debug
-
 # DIRECTORIES
 
 OBJ			:= ./obj
