@@ -6,7 +6,7 @@
 /*   By: gd-hallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:53:54 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 11:04:50 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:05:22 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	size_u(unsigned int arg)
 
 int	len_str_h(unsigned int arg, t_format *f)
 {
-	if (size_h(arg) > f->width && size_h(arg) > f->precision)
+	if (size_h(arg) >= f->width && size_h(arg) >= f->precision)
 		return (size_h(arg));
 	else if (f->width > f->precision)
 		return (f->width);
@@ -49,7 +49,7 @@ int	len_str_h(unsigned int arg, t_format *f)
 
 int	len_str_u(unsigned int arg, t_format *f)
 {
-	if (size_u(arg) > f->width && size_u(arg) > f->precision)
+	if (size_u(arg) >= f->width && size_u(arg) >= f->precision)
 		return (size_u(arg));
 	else if (f->width > f->precision)
 		return (f->width);

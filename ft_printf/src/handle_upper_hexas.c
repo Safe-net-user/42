@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 07:41:36 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 11:04:24 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:14:34 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ static void	write_flags(unsigned int nb, char *src, t_format *f, int *i)
 	j = 0;
 	if (HASHTAG_F & f->flags && nb != 0)
 		j = 2;
-	if ((size_h(nb) > f->width && size_h(nb) > f->precision)
-		|| f->precision > f->width || (f->precision < 0 && ZERO_F & f->flags
-			&& HASHTAG_F & f->flags))
+	if ((size_h(nb) >= f->width && size_h(nb) >= f->precision)
+		|| f->precision >= f->width)
 		return ;
 	else if (f->precision < 0 && !(MINUS_F & f->flags) && (ZERO_F & f->flags))
 		while (j++ < (f->width - size_h(nb)))

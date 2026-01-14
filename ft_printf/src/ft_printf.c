@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 00:03:29 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 20:06:39 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:01:38 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	ft_printf(const char *format, ...)
 			f = format_parsing(format, &i);
 			chars_written += arr[f->c](argptr, f);
 			i++;
+			free(f);
 		}
 		else
 			chars_written += putchar_fd(format[i++], STDOUT);
