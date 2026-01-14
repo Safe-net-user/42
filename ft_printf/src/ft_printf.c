@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 00:03:29 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/13 16:01:38 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/14 17:39:57 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	init_functions_array(t_funct *arr)
 	arr['%'] = handle_percent;
 }
 
+void	init_variables(int *i, int *chars_written)
+{
+	*i = 0;
+	*chars_written = 0;
+}
+
 int	ft_printf(const char *format, ...)
 {
 	t_funct		arr[128];
@@ -34,9 +40,8 @@ int	ft_printf(const char *format, ...)
 	int			chars_written;
 
 	init_functions_array(arr);
-	i = 0;
+	init_variables(&i, &chars_written);
 	va_start(argptr, format);
-	chars_written = 0;
 	if (!format)
 		return (0);
 	while (format[i])

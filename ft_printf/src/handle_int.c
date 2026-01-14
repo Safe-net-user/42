@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 10:52:50 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/12 10:42:25 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:46:48 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static void	write_param(t_format *f, int nb, char *src, int *i)
 	if (size(n) < f->precision)
 		while (j++ < (f->precision - size(nb)))
 			src[(*i)++] = '0';
+	if (n == 0 && f->width == 1 && f->precision == 0)
+		src[(*i)++] = ' ';
 	if ((n == 0 && f->precision != 0) || n != 0)
 	{
 		int_to_ascii(src, n, *i + size(nb) - 1);
