@@ -22,8 +22,8 @@ The function is designed to mimic the behavior of the standard `printf`, includi
 ### Compilation
 Compile the library using the following commands:
 ```bash
-gcc -Wall -Wextra -Werror -c *.c
-ar rcs libftprintf.a *.o
+make
+cc test.c -I include -L. -lftprintf
 ```
 Usage
 
