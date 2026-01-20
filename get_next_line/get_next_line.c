@@ -6,192 +6,147 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 15:33:19 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/16 23:22:41 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:13:08 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	clear_list(t_node **lst)
+size_t	next_segment(t_node **lst)
 {
-	t_node	*current;
-	t_node	*next;
-
-	current = *lst;
-	if (current == NULL)
-		return ;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*lst = NULL;
-}
-
-size_t	ft_strcpy(char *dst, const char *src)
-{
+	size_t	count;
+	t_node	*curr;
 	size_t	i;
 
+	curr = *lst;
 	i = 0;
-	while (src[i])
+	count = 0;
+	while (curr)
+	{
+		while (curr->str[i])
+		{
+			count++;
+			if (curr->str[i++] == LC)
+				return (count);
+		}
+		i = 0;
+		curr = curr->next;
+	}
+	return (count);
+}
+
+size_t	ft_strcpy_lc_count(char *dst, char *src, size_t n)
+{
+	size_t	i;
+	size_t	counter;
+
+	i = 0;
+	counter = 0;
+	if (dst == NULL && n == 0)
+	{
+		while (src[i])
+			if (src[i++] == LC)
+				counter++;
+		return (counter);
+	}
+	while (src[i] && i < n)
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (1);
-}
-
-size_t	count_LC(char *str)
-{
-	size_t	count;
-	size_t	i;
-
-	i = 0;
-	count = 0;
-	while (str[i] && i < BUFFER_SIZE)
-		if (str[i++] == LC)
-			count++;
-	return (count);
-}
-
-t_node	*create_node(char *str)
-{
-	t_node	*new;
-
-	new = malloc(sizeof(t_node));
-	if (!new)
-		return (NULL);
-	ft_strcpy(new->str, str);
-	new->next = NULL;
-	return (new);
-}
-
-int	add_back(char *str, t_node **lst)
-{
-	t_node	*new;
-	t_node	*curr;
-
-	new = create_node(str);
-	if (!new)
-		return (-1);
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return (0);
-	}
-
-	curr = *lst;
-	while (curr->next)
-		curr = curr->next;
-	curr->next = new;
 	return (0);
 }
 
-size_t	browse_ll(int count, t_node **lst)
+char	*get_next_segment(t_node **lst, char *src)
 {
-	size_t	i;
-	size_t	count_len;
-	size_t	LC_counter;
 	t_node	*curr;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	LC_counter = 0;
-	count_len = 0;
-	if (!*lst)
-		return (0);
-		curr = *lst;
-	while (curr)
+	j = 0;
+	while (*lst)
 	{
-		while (curr->str[i] && i < BUFFER_SIZE)
+		i = 0;
+		curr = *lst;
+		while (curr->str[i])
 		{
-			if (curr->str[i] == LC)
-				LC_counter++;
-			if (LC_counter >= count)
-				count_len++;
-			if (LC_counter > count)
-				return (count_len);
-			i++;
+			src[j++] = curr->str[i];
+			if (curr->str[i++] == LC)
+			{
+				src[j] = '\0';
+				clear_node(curr, lst);
+				return (src);
+			}
 		}
-		curr = curr->next;
+		clear_node(curr, lst);
 	}
-	return (count_len);
+	src[j] = '\0';
+	return (src);
 }
 
-size_t	len_str(int fd, int count, t_node **lst)
+size_t	len_str(t_node **lst, int fd)
 {
-	char	buff[BUFFER_SIZE];
-	size_t	LC_counter;
-	size_t	bytes_read;
+	char	*buff;
+	ssize_t	bytes_read;
 
-	LC_counter = count;
-	while (read(fd, buff, BUFFER_SIZE) > 0 && LC_counter == count)
+	buff = malloc(BUFFER_SIZE + 1);
+	if (!buff)
+		return (0);
+	bytes_read = read(fd, buff, BUFFER_SIZE);
+	while (bytes_read > 0)
 	{
-		if (add_back(buff, lst) < 0)
+		buff[bytes_read] = '\0';
+		if (add_back(buff, lst, bytes_read) == -1)
 		{
+			free(buff);
 			clear_list(lst);
 			return (0);
 		}
-		LC_counter += count_LC(buff);
-	}
-	return (browse_ll(count, lst));
-}
-
-int	get_next_segment(int count, char *str, t_node **lst)
-{
-	size_t	i;
-	size_t	j;
-	size_t	LC_counter;
-	t_node	*curr;
-
-	i = 0;
-	j = 0;
-	LC_counter = count;
-	if (!*lst)
-		return (0);
-	curr = *lst;
-	while (curr && LC_counter <= count)
-	{
-		while (curr->str[i] && LC_counter <= count)
+		if (ft_strcpy_lc_count(NULL, buff, 0) > 0)
 		{
-			if (curr->str[i] == LC)
-				LC_counter++;
-			if (LC_counter >= count)
-				str[j++] = curr->str[i++];
+			free(buff);
+			return (next_segment(lst));
 		}
+		bytes_read = read(fd, buff, BUFFER_SIZE);
 	}
-	str[j] = '\0';
-	return (1);
+	free(buff);
+	return (next_segment(lst));
 }
 
 char	*get_next_line(int fd)
 {
-	static int	count;
-	char		*str;
-	t_node		*lst;
-	size_t		len;
+	static t_node	*tab[1024];
+	char			*str;
+	size_t			len;
 
-	lst = NULL;
-	len = len_str(fd, count, &lst);
+	if (fd < 0 || fd > 1024)
+		return (NULL);
+	len = len_str(&tab[fd], fd);
+	if (len == 0)
+	{
+		clear_list(&tab[fd]);
+		return (NULL);
+	}
 	str = malloc(len + 1);
 	if (!str)
+	{
+		clear_list(&tab[fd]);
 		return (NULL);
-	if (!get_next_segment(count, str, &lst))
-		return (NULL);
-	count++;
-	return (str);
+	}
+	str[len] = '\0';
+	return (get_next_segment(&tab[fd], str));
 }
 
-int main()
+/*int main()
 {
-	t_node	*lst;
-	int fd = open("./get_next_line.h", O_RDONLY);
-	/*lst = NULL;
-	add_back("tytyt", &lst);
-	printf("%s", lst->str);*/
-	for (int i = 0; i < 10; i++)
+	//int fd1 = open("./tg", O_RDONLY);
+	int fd2 = open("./t", O_RDONLY);
+	char	*t;
+	for (int i = 0; i < 1; i++)
 	{
-		printf("%s", get_next_line(fd));
+		t = get_next_line(fd2);
+		printf("%s", t);
+		free(t);
 	}
-}
+}*/
