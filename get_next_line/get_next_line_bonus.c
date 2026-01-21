@@ -6,7 +6,7 @@
 /*   By: gd-hallu <gd-hallu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 15:33:19 by gd-hallu          #+#    #+#             */
-/*   Updated: 2026/01/21 16:34:11 by gd-hallu         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:13:08 by gd-hallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,32 +116,32 @@ size_t	len_str(t_node **lst, int fd)
 
 char	*get_next_line(int fd)
 {
+	static t_node	*tab[1024];
 	char			*str;
 	size_t			len;
-	static t_node	*lst;
 
 	if (fd < 0 || fd > 1024)
 		return (NULL);
-	len = len_str(&lst, fd);
+	len = len_str(&tab[fd], fd);
 	if (len == 0)
 	{
-		clear_list(&lst);
+		clear_list(&tab[fd]);
 		return (NULL);
 	}
 	str = malloc(len + 1);
 	if (!str)
 	{
-		clear_list(&lst);
+		clear_list(&tab[fd]);
 		return (NULL);
 	}
 	str[len] = '\0';
-	return (get_next_segment(&lst, str));
+	return (get_next_segment(&tab[fd], str));
 }
 
-int main()
+/*int main()
 {
 	//int fd1 = open("./tg", O_RDONLY);
-	int fd2 = open("./get_next_line.h", O_RDONLY);
+	int fd2 = open("./t", O_RDONLY);
 	char	*t;
 	for (int i = 0; i < 1; i++)
 	{
@@ -149,4 +149,4 @@ int main()
 		printf("%s", t);
 		free(t);
 	}
-}
+}*/
